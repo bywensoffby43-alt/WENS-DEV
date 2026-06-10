@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs - WensCloud</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ☁️ WensCloud
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="bots.html">Bots</a>
+            <a href="deploy.html">Deploy</a>
+            <a href="logs.html">Logs</a>
+            <a href="settings.html">Settings</a>
+
+            <button
+                class="btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h2>Bot Logs</h2>
+
+            <br>
+
+            <button
+                class="btn"
+                onclick="loadLogs()"
+            >
+                Refresh Logs
+            </button>
+
+            <br><br>
+
+            <pre
+                id="logsContainer"
+                style="
+                    background:#0f172a;
+                    padding:15px;
+                    border-radius:10px;
+                    min-height:400px;
+                    overflow:auto;
+                    color:#22c55e;
+                "
+            >
+Loading...
+            </pre>
+
+        </div>
+
+    </div>
+
+    <script src="./js/auth.js"></script>
+    <script src="./js/logs.js"></script>
+
+</body>
+
+</html>
