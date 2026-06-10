@@ -1,5 +1,13 @@
 import express from "express";
 
+import {
+    uploadImage,
+    uploadZip,
+    uploadCreds
+} from "../services/uploadService.js";
+
+import express from "express";
+
 const router = express.Router();
 
 router.post("/upload-image", async (req, res) => {
