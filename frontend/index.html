@@ -1,1 +1,86 @@
-y
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WensCloud</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <script>
+        const token = localStorage.getItem("token");
+
+        if (token) {
+            window.location.href = "dashboard.html";
+        }
+    </script>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ☁️ WensCloud
+        </div>
+
+        <div class="nav-links">
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>☁️ WensCloud</h1>
+
+            <br>
+
+            <p>
+                Deploy and manage your bots from one dashboard.
+            </p>
+
+            <br>
+
+            <a href="register.html">
+                <button class="btn">
+                    Get Started
+                </button>
+            </a>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+            <div class="stat-card">
+                <h2>🤖 Multi Bots</h2>
+                <p>Create and manage bots.</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>🚀 Fast Deploy</h2>
+                <p>Deploy from ZIP or GitHub.</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>📜 Live Logs</h2>
+                <p>Monitor bot activity.</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>🔒 Secure</h2>
+                <p>User authentication included.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        © 2026 WensCloud
+    </footer>
+
+</body>
+</html>
