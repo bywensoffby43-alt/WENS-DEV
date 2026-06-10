@@ -1,1 +1,90 @@
-b
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bots - WensCloud</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ☁️ WensCloud
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="bots.html">Bots</a>
+            <a href="deploy.html">Deploy</a>
+            <a href="settings.html">Settings</a>
+
+            <button
+                class="btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h2>Create Bot</h2>
+
+            <br>
+
+            <div class="input-group">
+                <input
+                    type="text"
+                    id="botName"
+                    placeholder="Bot Name"
+                >
+            </div>
+
+            <button
+                class="btn"
+                onclick="createBot()"
+            >
+                Create Bot
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h2>My Bots</h2>
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="botsTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="./js/auth.js"></script>
+    <script src="./js/bots.js"></script>
+
+</body>
+
+</html>
