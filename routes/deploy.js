@@ -1,5 +1,18 @@
 import express from "express";
 
+import {
+    deployZip,
+    deployGithub
+} from "../services/deployService.js";
+
+import {
+    startBot,
+    stopBot,
+    restartBot
+} from "../services/processService.js";
+
+import express from "express";
+
 const router = express.Router();
 
 router.post("/zip", async (req, res) => {
