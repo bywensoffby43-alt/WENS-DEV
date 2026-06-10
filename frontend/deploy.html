@@ -1,1 +1,100 @@
-h
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy Bot - WensCloud</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ☁️ WensCloud
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="bots.html">Bots</a>
+            <a href="deploy.html">Deploy</a>
+            <a href="settings.html">Settings</a>
+
+            <button class="btn" onclick="logout()">
+                Logout
+            </button>
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h2>Deploy From GitHub</h2>
+
+            <br>
+
+            <div class="input-group">
+                <input
+                    type="text"
+                    id="repoUrl"
+                    placeholder="https://github.com/user/repo"
+                >
+            </div>
+
+            <button
+                class="btn"
+                onclick="deployGithub()"
+            >
+                Deploy GitHub
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Deploy ZIP File</h2>
+
+            <br>
+
+            <div class="input-group">
+                <input
+                    type="file"
+                    id="zipFile"
+                    accept=".zip"
+                >
+            </div>
+
+            <button
+                class="btn"
+                onclick="deployZip()"
+            >
+                Upload ZIP
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Deployment Status</h2>
+
+            <br>
+
+            <div id="deployStatus">
+                Waiting...
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="./js/auth.js"></script>
+    <script src="./js/deploy.js"></script>
+
+</body>
+
+</html>
