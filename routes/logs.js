@@ -1,5 +1,12 @@
 import express from "express";
 
+import {
+    getLogs,
+    getBotLogs
+} from "../services/logService.js";
+
+import express from "express";
+
 const router = express.Router();
 
 router.get("/", async (req, res) => {
