@@ -15,6 +15,17 @@ router.post("/register", async (req, res) => {
             password
         } = req.body;
 
+        if (
+            !username ||
+            !email ||
+            !password
+        ) {
+            return res.status(400).json({
+                success: false,
+                message: "All fields are required"
+            });
+        }
+
         const existingUser =
             await User.findOne({
                 $or: [
@@ -26,8 +37,7 @@ router.post("/register", async (req, res) => {
         if (existingUser) {
             return res.status(400).json({
                 success: false,
-                message:
-                    "User already exists"
+                message: "User already exists"
             });
         }
 
@@ -41,20 +51,18 @@ router.post("/register", async (req, res) => {
             await User.create({
                 username,
                 email,
-                password:
-                    hashedPassword
+                password: hashedPassword,
+                role: "user"
             });
 
         res.status(201).json({
             success: true,
-            message:
-                "Account created",
+            message: "Account created",
             user: {
                 id: user._id,
-                username:
-                    user.username,
-                email:
-                    user.email
+                username: user.username,
+                email: user.email,
+                role: user.role
             }
         });
 
@@ -62,8 +70,7 @@ router.post("/register", async (req, res) => {
 
         res.status(500).json({
             success: false,
-            message:
-                error.message
+            message: error.message
         });
 
     }
@@ -79,6 +86,16 @@ router.post("/login", async (req, res) => {
             password
         } = req.body;
 
+        if (
+            !email ||
+            !password
+        ) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and password are required"
+            });
+        }
+
         const user =
             await User.findOne({
                 email
@@ -87,8 +104,7 @@ router.post("/login", async (req, res) => {
         if (!user) {
             return res.status(404).json({
                 success: false,
-                message:
-                    "User not found"
+                message: "User not found"
             });
         }
 
@@ -101,8 +117,7 @@ router.post("/login", async (req, res) => {
         if (!match) {
             return res.status(401).json({
                 success: false,
-                message:
-                    "Invalid password"
+                message: "Invalid password"
             });
         }
 
@@ -123,12 +138,9 @@ router.post("/login", async (req, res) => {
             token,
             user: {
                 id: user._id,
-                username:
-                    user.username,
-                email:
-                    user.email,
-                role:
-                    user.role
+                username: user.username,
+                email: user.email,
+                role: user.role
             }
         });
 
@@ -136,8 +148,7 @@ router.post("/login", async (req, res) => {
 
         res.status(500).json({
             success: false,
-            message:
-                error.message
+            message: error.message
         });
 
     }
