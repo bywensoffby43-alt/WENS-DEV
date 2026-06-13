@@ -11,43 +11,15 @@ import {
     restartBot
 } from "../services/processService.js";
 
-import express from "express";
-
 const router = express.Router();
 
-router.post("/zip", async (req, res) => {
-    res.json({
-        success: true,
-        message: "ZIP Deploy Route"
-    });
-});
+// Deploy Routes
+router.post("/zip", deployZip);
+router.post("/github", deployGithub);
 
-router.post("/github", async (req, res) => {
-    res.json({
-        success: true,
-        message: "GitHub Deploy Route"
-    });
-});
-
-router.post("/start/:id", async (req, res) => {
-    res.json({
-        success: true,
-        message: "Bot Started"
-    });
-});
-
-router.post("/stop/:id", async (req, res) => {
-    res.json({
-        success: true,
-        message: "Bot Stopped"
-    });
-});
-
-router.post("/restart/:id", async (req, res) => {
-    res.json({
-        success: true,
-        message: "Bot Restarted"
-    });
-});
+// Bot Process Routes
+router.post("/start/:id", startBot);
+router.post("/stop/:id", stopBot);
+router.post("/restart/:id", restartBot);
 
 export default router;
