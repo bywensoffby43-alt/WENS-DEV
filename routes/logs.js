@@ -5,22 +5,12 @@ import {
     getBotLogs
 } from "../services/logService.js";
 
-import express from "express";
-
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-    res.json({
-        success: true,
-        logs: []
-    });
-});
+// All Logs
+router.get("/", getLogs);
 
-router.get("/:botId", async (req, res) => {
-    res.json({
-        success: true,
-        botId: req.params.botId
-    });
-});
+// Bot Logs
+router.get("/:botId", getBotLogs);
 
 export default router;
