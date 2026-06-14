@@ -52,9 +52,10 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
 
-        const bot = await Bot.create(
-            req.body
-        );
+        const bot = await Bot.create({
+    ...req.body,
+    status: "offline"
+});
 
         res.status(201).json({
             success: true,
