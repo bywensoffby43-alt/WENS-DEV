@@ -25,7 +25,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 //Database
-//await connectDB();
+await connectDB();
 
 // Middleware
 app.use(cors());
