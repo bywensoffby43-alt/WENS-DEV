@@ -8,6 +8,7 @@ if (!token) {
 
 }
 
+// Load All Bots
 async function loadBots() {
 
     try {
@@ -36,27 +37,82 @@ async function loadBots() {
         bots.forEach(bot => {
 
             table.innerHTML += `
-                <tr>
+            <tr>
 
-                    <td>${bot.name}</td>
+                <td>${bot.name}</td>
 
-                    <td>${bot.status}</td>
+                <td>
+                    ${
+                        bot.status === "online"
+                        ? "🟢 Online"
+                        : "🔴 Offline"
+                    }
+                </td>
 
-                    <td>
+                <td>
 
-                        <button
-                            class="btn"
-                            onclick="deleteBot('${bot._id}')"
-                        >
-                            Delete
-                        </button>
+                    <div class="monitor-card">
 
-                    </td>
+                        <div>
+                            CPU:
+                            <span id="cpu-${bot._id}">
+                                0
+                            </span>%
+                        </div>
 
-                </tr>
+                        <div>
+                            RAM:
+                            <span id="ram-${bot._id}">
+                                0
+                            </span>
+                            MB
+                        </div>
+
+                        <div>
+                            UP:
+                            <span id="uptime-${bot._id}">
+                                0
+                            </span>
+                        </div>
+
+                    </div>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn"
+                        onclick="deleteBot('${bot._id}')"
+                    >
+                        Delete
+                    </button>
+
+                </td>
+
+            </tr>
             `;
 
         });
+
+        setTimeout(() => {
+
+            bots.forEach(bot => {
+
+                if (
+                    typeof loadMonitor ===
+                    "function"
+                ) {
+
+                    loadMonitor(
+                        bot._id
+                    );
+
+                }
+
+            });
+
+        }, 500);
 
     } catch (error) {
 
@@ -66,6 +122,7 @@ async function loadBots() {
 
 }
 
+// Create Bot
 async function createBot() {
 
     const name =
@@ -80,6 +137,7 @@ async function createBot() {
         );
 
         return;
+
     }
 
     try {
@@ -104,7 +162,19 @@ async function createBot() {
                 }
             );
 
-        await response.json();
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+
+            alert(
+                data.message ||
+                "Failed to create bot"
+            );
+
+            return;
+
+        }
 
         document.getElementById(
             "botName"
@@ -120,6 +190,7 @@ async function createBot() {
 
 }
 
+// Delete Bot
 async function deleteBot(id) {
 
     if (
@@ -154,4 +225,5 @@ async function deleteBot(id) {
 
 }
 
+// First Load
 loadBots();
