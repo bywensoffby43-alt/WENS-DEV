@@ -163,3 +163,36 @@ a{
     margin-top:40px;
     color:#94a3b8;
 }
+.card{
+    animation:fadeIn .6s ease;
+}
+
+.stat-card{
+    animation:slideUp .7s ease;
+    transition:.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(56,189,248,.4);
+}
+
+.logo{
+    animation:floating 3s infinite;
+}
+
+.btn{
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+.navbar{
+    backdrop-filter:blur(10px);
+}
+
+.card:hover{
+    animation:glow 2s infinite;
+}
