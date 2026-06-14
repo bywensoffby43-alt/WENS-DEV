@@ -1,44 +1,45 @@
-async function loadBotStatus(name) {
+async function loadMonitor(botId) {
 
     try {
 
         const res =
             await fetch(
-                `/api/monitor/${name}`
+                `/api/monitor/${botId}`
             );
 
         const data =
             await res.json();
 
-        document.getElementById(
-            "botStatus"
-        ).innerText =
-            data.online
-                ? "🟢 Online"
-                : "🔴 Offline";
+        const cpu =
+            document.getElementById(
+                `cpu-${botId}`
+            );
 
-        document.getElementById(
-            "cpu"
-        ).innerText =
-            data.cpu;
+        const ram =
+            document.getElementById(
+                `ram-${botId}`
+            );
 
-        document.getElementById(
-            "ram"
-        ).innerText =
-            (
-                data.memory /
-                1024 /
-                1024
-            ).toFixed(2);
+        const uptime =
+            document.getElementById(
+                `uptime-${botId}`
+            );
 
-        document.getElementById(
-            "uptime"
-        ).innerText =
-            Math.floor(
-                (Date.now() -
-                data.uptime)
-                / 1000
-            ) + " sec";
+        if (cpu)
+            cpu.innerText =
+                data.cpu || 0;
+
+        if (ram)
+            ram.innerText =
+                (
+                    (data.memory || 0)
+                    / 1024
+                    / 1024
+                ).toFixed(2);
+
+        if (uptime)
+            uptime.innerText =
+                data.uptime || 0;
 
     } catch (error) {
 
@@ -47,11 +48,3 @@ async function loadBotStatus(name) {
     }
 
 }
-
-setInterval(() => {
-
-    loadBotStatus("KING");
-
-}, 5000);
-
-loadBotStatus("KING");
