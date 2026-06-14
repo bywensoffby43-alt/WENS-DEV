@@ -52,6 +52,16 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
 
+const exists = await Bot.findOne({
+    name: req.body.name
+});
+
+if (exists) {
+    return res.status(400).json({
+        success: false,
+        message: "Bot already exists"
+    });
+}
         const bot = await Bot.create({
     ...req.body,
     status: "offline"
