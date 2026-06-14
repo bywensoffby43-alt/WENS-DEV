@@ -9,6 +9,7 @@ import {
 
 import fs from "fs";
 import path from "path";
+
 const router = express.Router();
 
 // Get All Bots
@@ -60,20 +61,25 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
 
-const exists = await Bot.findOne({
-    name: req.body.name
-});
+        const exists =
+            await Bot.findOne({
+                name: req.body.name
+            });
 
-if (exists) {
-    return res.status(400).json({
-        success: false,
-        message: "Bot already exists"
-    });
-}
-        const bot = await Bot.create({
-    ...req.body,
-    status: "offline"
-});
+        if (exists) {
+
+            return res.status(400).json({
+                success: false,
+                message: "Bot already exists"
+            });
+
+        }
+
+        const bot =
+            await Bot.create({
+                ...req.body,
+                status: "offline"
+            });
 
         res.status(201).json({
             success: true,
@@ -127,23 +133,187 @@ router.put("/:id", async (req, res) => {
 
 // Start Bot
 router.post("/:id/start", async (req, res) => {
-    ...
+
+    try {
+
+        const bot =
+            await Bot.findById(
+                req.params.id
+            );
+
+        if (!bot) {
+
+            return res.status(404).json({
+                success: false,
+                message: "Bot not found"
+            });
+
+        }
+
+        await startBot(
+            bot.name,
+            bot.folderPath
+        );
+
+        bot.status = "online";
+
+        await bot.save();
+
+        res.json({
+            success: true,
+            message: "Bot started"
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
 });
 
 // Stop Bot
 router.post("/:id/stop", async (req, res) => {
-    ...
+
+    try {
+
+        const bot =
+            await Bot.findById(
+                req.params.id
+            );
+
+        if (!bot) {
+
+            return res.status(404).json({
+                success: false,
+                message: "Bot not found"
+            });
+
+        }
+
+        await stopBot(
+            bot.name
+        );
+
+        bot.status = "offline";
+
+        await bot.save();
+
+        res.json({
+            success: true,
+            message: "Bot stopped"
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
 });
 
 // Restart Bot
 router.post("/:id/restart", async (req, res) => {
-    ...
+
+    try {
+
+        const bot =
+            await Bot.findById(
+                req.params.id
+            );
+
+        if (!bot) {
+
+            return res.status(404).json({
+                success: false,
+                message: "Bot not found"
+            });
+
+        }
+
+        await restartBot(
+            bot.name
+        );
+
+        res.json({
+            success: true,
+            message: "Bot restarted"
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
 });
 
 // Get Logs
 router.get("/:id/logs", async (req, res) => {
-    ...
+
+    try {
+
+        const bot =
+            await Bot.findById(
+                req.params.id
+            );
+
+        if (!bot) {
+
+            return res.status(404).json({
+                success: false,
+                message: "Bot not found"
+            });
+
+        }
+
+        const logFile =
+            path.join(
+                process.cwd(),
+                "logs",
+                `${bot.name}.log`
+            );
+
+        if (!fs.existsSync(logFile)) {
+
+            return res.json({
+                success: true,
+                logs: ""
+            });
+
+        }
+
+        const logs =
+            fs.readFileSync(
+                logFile,
+                "utf8"
+            );
+
+        res.json({
+            success: true,
+            logs
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
 });
+
 // Delete Bot
 router.delete("/:id", async (req, res) => {
     try {
