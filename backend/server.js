@@ -4,19 +4,19 @@ import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import path from "path";
 import { fileURLToPath } from "url";
-import monitorRoutes from "../routes/monitor.js";
 
-import connectDB from "../config/database.js";
+import monitorRoutes from "./routes/monitor.js";
 
-import User from "../models/User.js";
+import connectDB from "./config/database.js";
 
-import authRoutes from "../routes/auth.js";
-import botRoutes from "../routes/bots.js";
-import deployRoutes from "../routes/deploy.js";
-import fileRoutes from "../routes/files.js";
-import logRoutes from "../routes/logs.js";
-import settingsRoutes from "../routes/settings.js";
+import User from "./models/User.js";
 
+import authRoutes from "./routes/auth.js";
+import botRoutes from "./routes/bots.js";
+import deployRoutes from "./routes/deploy.js";
+import fileRoutes from "./routes/files.js";
+import logRoutes from "./routes/logs.js";
+import settingsRoutes from "./routes/settings.js";
 dotenv.config();
 
 const app = express();
