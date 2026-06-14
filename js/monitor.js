@@ -1,5 +1,25 @@
 async function loadMonitor(botId) {
 
+setInterval(() => {
+
+    const monitors =
+        document.querySelectorAll(
+            "[id^='cpu-']"
+        );
+
+    monitors.forEach(item => {
+
+        const botId =
+            item.id.replace(
+                "cpu-",
+                ""
+            );
+
+        loadMonitor(botId);
+
+    });
+
+}, 5000);
     try {
 
         const res =
