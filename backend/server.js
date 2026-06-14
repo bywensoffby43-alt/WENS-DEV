@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import path from "path";
 import { fileURLToPath } from "url";
+import monitorRoutes from "../routes/monitor.js";
 
 import connectDB from "../config/database.js";
 
