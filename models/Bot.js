@@ -59,6 +59,25 @@ const botSchema = new mongoose.Schema(
     },
 
     pid: {
+cpu: {
+    type: Number,
+    default: 0
+},
+
+memory: {
+    type: Number,
+    default: 0
+},
+
+uptime: {
+    type: Number,
+    default: 0
+},
+
+lastSeen: {
+    type: Date,
+    default: null
+}
         type: Number,
         default: null
     }
