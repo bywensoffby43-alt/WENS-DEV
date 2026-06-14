@@ -1,0 +1,49 @@
+/* Fade In */
+@keyframes fadeIn {
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Floating */
+@keyframes floating {
+    0%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
+
+/* Glow */
+@keyframes glow {
+    0%{
+        box-shadow:0 0 5px #38bdf8;
+    }
+    50%{
+        box-shadow:0 0 20px #38bdf8;
+    }
+    100%{
+        box-shadow:0 0 5px #38bdf8;
+    }
+}
+
+/* Slide Up */
+@keyframes slideUp {
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
