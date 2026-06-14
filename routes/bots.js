@@ -125,6 +125,25 @@ router.put("/:id", async (req, res) => {
     }
 });
 
+// Start Bot
+router.post("/:id/start", async (req, res) => {
+    ...
+});
+
+// Stop Bot
+router.post("/:id/stop", async (req, res) => {
+    ...
+});
+
+// Restart Bot
+router.post("/:id/restart", async (req, res) => {
+    ...
+});
+
+// Get Logs
+router.get("/:id/logs", async (req, res) => {
+    ...
+});
 // Delete Bot
 router.delete("/:id", async (req, res) => {
     try {
